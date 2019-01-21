@@ -1,0 +1,46 @@
+---
+# tasks file for backup
+
+- name: install required packages
+  become: yes
+  apt:
+    name: ['mysql-client', 'awscli']
+    state: latest
+
+- name: create backup shell script
+  become: yes
+  become_user: root
+  template:
+    src: backup-db.sh.j2
+    dest: "{{shell_script_path}}/backup-db.sh"
+    mode: 0755
+  tags: 
+    - bedita-backup
+
+- name: ensure custom cron files exist
+  become: yes
+  become_user: root
+  file:
+    path: "/etc/cron.d/{{ item.cron_file }}"
+    state: touch
+    owner: root
+    mode: 0755
+  loop: "{{ backup_cron_jobs }}"
+  tags: 
+    - bedita-backup
+    - bedita-cron
+
+- name: set custom app cron jobs
+  become: yes
+  become_user: root
+  cron:
+    user: "{{ app_cron_user }}"
+    name: "{{ item.name }}"
+    job: "{{ item.job }}"
+    hour: "{{ item.hour }}"
+    minute: "{{ item.minute }}"
+    cron_file: "{{ item.cron_file }}"
+  loop: "{{ backup_cron_jobs }}"
+  tags:
+    - bedita-backup
+    - bedita-cron

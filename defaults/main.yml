@@ -1,0 +1,6 @@
+---
+# defaults file for backup
+
+tmp_backup_path: /tmp/backup
+shell_script_path: /usr/local/bin
+s3_backup_db_path: s3://bucketname/path
