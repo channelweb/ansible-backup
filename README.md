@@ -12,7 +12,7 @@ To use the role add these lines to `requirements.yml` file
     - src: https://github.com/channelweb/ansible-backup
       name: backup
 
-Use `ansible-galaxy install -r requirements.yml ' to add the role
+Use `ansible-galaxy install -r requirements.yml` to add the role
 
 Variables
 ---------
