@@ -37,8 +37,11 @@
     user: "{{ app_cron_user }}"
     name: "{{ item.name }}"
     job: "{{ item.job }}"
-    hour: "{{ item.hour }}"
-    minute: "{{ item.minute }}"
+    minute: "{{ item.minute | default(0) }}"
+    hour: "{{ item.hour | default(0) }}"
+    weekday: "{{ item.weekday | default('*') }}"
+    day: "{{ item.day | default('*') }}"
+    month: "{{ item.month  | default('*') }}"
     cron_file: "{{ item.cron_file }}"
   loop: "{{ backup_cron_jobs }}"
   tags:
