@@ -9,8 +9,10 @@ Requirements
 An s3 bucket (where storing backup data) is required.
 To use the role add these lines to `requirements.yml` file
 
-    - src: https://github.com/channelweb/ansible-backup
-      name: backup
+```yaml
+- src: https://github.com/channelweb/ansible-backup
+  name: backup
+```
 
 Use `ansible-galaxy install -r requirements.yml` to add the role
 
@@ -22,8 +24,9 @@ In `defaults/main.yml` you find default values for the variables you should set:
 - `tmp_backup_path` is the temporary folder on the server, where the backup archive is stored (before moving it to s3 folder). Default value is `/tmp/backup`.
 - `shell_script_path` is the path on the server where backup script will be stored. Default value is `/usr/local/bin`
 - `s3_backup_db_path` is the s3 bucket path where backup archive will be stored. Default values is `s3://bucketname/path`.
+- `backup_cron_jobs` list of cron jobjs for backups. Default empty list, see commented example in `defuaults/main.yml`.
 
 License
 -------
 
-BSD
+MIT
