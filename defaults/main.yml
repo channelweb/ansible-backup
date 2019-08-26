@@ -4,3 +4,13 @@
 tmp_backup_path: /tmp/backup
 shell_script_path: /usr/local/bin
 s3_backup_db_path: s3://bucketname/path
+backup_cron_jobs: []
+
+# Backup cron job example below (daily backup)
+# 
+# backup_cron_jobs:
+#   - name: backup database
+#     job: "{{ shell_script_path }}/backup-db.sh > /dev/null 2>&1"
+#     hour: 5
+#     minute: 00
+#     cron_file: my_backupdb
