@@ -1,9 +1,10 @@
 ---
 # defaults file for backup
-
 tmp_backup_path: /tmp/backup
 shell_script_path: /usr/local/bin
-s3_backup_db_path: s3://bucketname/path
+s3_backup_db_path: s3://bucketname/db-path
+s3_backup_logs_path: s3://bucketname/logs-path
+backup_log_files: []
 backup_cron_jobs: []
 
 # Backup cron job example below (daily backup)
