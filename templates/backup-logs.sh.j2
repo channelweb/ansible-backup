@@ -1,0 +1,9 @@
+#!/bin/bash
+
+TODAY=`date +"%Y-%m-%d_"`
+
+{% for val in backup_log_files %}
+    FNAME="$(basename -- {{ val }})"
+    DEST="{{ s3_backup_logs_path }}/$TODAY$FNAME"
+    aws s3 cp {{ val }} $DEST
+{% endfor %}

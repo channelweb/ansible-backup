@@ -7,13 +7,24 @@
     name: ['mysql-client', 'awscli']
     state: latest
 
-- name: create backup shell script
+- name: create backup db shell script
   become: yes
   become_user: root
   template:
     src: backup-db.sh.j2
     dest: "{{shell_script_path}}/backup-db.sh"
     mode: 0755
+  tags: 
+    - bedita-backup
+
+- name: create backup logs shell script
+  become: yes
+  become_user: root
+  template:
+    src: backup-logs.sh.j2
+    dest: "{{shell_script_path}}/backup-logs.sh"
+    mode: 0755
+  when: backup_log_files|default([])|length >0
   tags: 
     - bedita-backup
 

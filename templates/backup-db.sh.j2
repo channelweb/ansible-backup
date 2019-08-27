@@ -15,6 +15,6 @@ fi
         MYSQL_PASSWORD='{{ val.mysql_password }}'
         DATABASE_NAME='{{ val.mysql_database }}'
         mysqldump -h ${MYSQL_HOST} -P ${MYSQL_PORT} -u ${MYSQL_USER} -p${MYSQL_PASSWORD} ${DATABASE_NAME} | gzip > ${DB_BACKUP_PATH}/${DATABASE_NAME}-${TODAY}.sql.gz
-        aws s3 mv ${DB_BACKUP_PATH}/${DATABASE_NAME}-${TODAY}.sql.gz {{ s3_backup_db_path }}
+        aws s3 mv ${DB_BACKUP_PATH}/${DATABASE_NAME}-${TODAY}.sql.gz {{ s3_backup_db_path }}/
     {% endif %}
 {% endfor %}
