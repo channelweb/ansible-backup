@@ -19,5 +19,11 @@ backup_cron_jobs: []
 # Backup log files example below
 # 
 # backup_log_files:
-#   - /var/log/apache2/access.log.1
-#   - /var/log/mysql/err.log.1
+#
+#  'source': log file absolute path
+#  'dest': file name on s3 bucket, a "say" prefix will be added (like `20190827_`)
+#
+#   - source:/var/log/apache2/app-access.log.1
+#     dest: app-access.log
+#   - source: /var/log/mysql/err.log.1
+#     dest: 
