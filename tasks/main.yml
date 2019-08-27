@@ -24,6 +24,7 @@
     src: backup-logs.sh.j2
     dest: "{{shell_script_path}}/backup-logs.sh"
     mode: 0755
+  when: backup_log_files|default([])|length >0
   tags: 
     - bedita-backup
 

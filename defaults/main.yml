@@ -15,3 +15,9 @@ backup_cron_jobs: []
 #     hour: 5
 #     minute: 00
 #     cron_file: my_backupdb
+
+# Backup log files example below
+# 
+# backup_log_files:
+#   - /var/log/apache2/access.log.1
+#   - /var/log/mysql/err.log.1
