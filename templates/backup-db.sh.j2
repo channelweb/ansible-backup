@@ -9,7 +9,7 @@ if [[ ! -e ${DB_BACKUP_PATH} ]]; then
     mkdir ${DB_BACKUP_PATH}
 fi
 
-{% for key,val in apps_secrets.iteritems() %}
+{% for key,val in apps_secrets.items() %}
     {% if val.has_key('mysql_database') %}
         MYSQL_USER='{{ val.mysql_username }}'
         MYSQL_PASSWORD='{{ val.mysql_password }}'
