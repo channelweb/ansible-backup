@@ -7,6 +7,8 @@ s3_backup_logs_path: s3://bucketname/logs-path
 backup_log_files: []
 backup_cron_jobs: []
 
+wp_secrets: {}
+
 # Backup cron job example below (daily backup)
 # 
 # backup_cron_jobs:
