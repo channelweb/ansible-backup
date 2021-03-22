@@ -10,7 +10,7 @@ if [[ ! -e ${DB_BACKUP_PATH} ]]; then
 fi
 
 {% for key,val in backup_secrets.items() %}
-    {% if val.has_key('mysql_database') %}
+    {% if 'mysql_database' in val %}
         MYSQL_USER='{{ val.mysql_username }}'
         MYSQL_PASSWORD='{{ val.mysql_password }}'
         DATABASE_NAME='{{ val.mysql_database }}'
