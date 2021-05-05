@@ -5,6 +5,9 @@ DB_BACKUP_PATH='{{ tmp_backup_path }}'
 MYSQL_HOST='{{ rds_host }}'
 MYSQL_PORT='{{ rds_port }}'
 
+# set this option to avoid error from mysqldump v8 on mysql server v5.7
+MYSQLDUMPOPTS="--column-statistics=0"
+
 if [[ ! -e ${DB_BACKUP_PATH} ]]; then
     mkdir ${DB_BACKUP_PATH}
 fi
@@ -14,7 +17,7 @@ fi
         MYSQL_USER='{{ val.mysql_username }}'
         MYSQL_PASSWORD='{{ val.mysql_password }}'
         DATABASE_NAME='{{ val.mysql_database }}'
-        mysqldump -h ${MYSQL_HOST} -P ${MYSQL_PORT} -u ${MYSQL_USER} -p${MYSQL_PASSWORD} ${DATABASE_NAME} | gzip > ${DB_BACKUP_PATH}/${DATABASE_NAME}-${TODAY}.sql.gz
+        mysqldump ${MYSQLDUMPOPTS} -h ${MYSQL_HOST} -P ${MYSQL_PORT} -u ${MYSQL_USER} -p${MYSQL_PASSWORD} ${DATABASE_NAME} | gzip > ${DB_BACKUP_PATH}/${DATABASE_NAME}-${TODAY}.sql.gz
         aws s3 mv ${DB_BACKUP_PATH}/${DATABASE_NAME}-${TODAY}.sql.gz {{ s3_backup_db_path }}
     {% endif %}
 {% endfor %}
