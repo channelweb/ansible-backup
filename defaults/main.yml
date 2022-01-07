@@ -7,10 +7,13 @@ s3_backup_logs_path: s3://bucketname/logs-path
 backup_log_files: []
 backup_cron_jobs: []
 
+# option to avoid error from mysqldump v8 on mysql server v5.7
+mysql_dump_opts: --column-statistics=0
+
 wp_secrets: {}
 
 # Backup cron job example below (daily backup)
-# 
+#
 # backup_cron_jobs:
 #   - name: backup database
 #     job: "{{ shell_script_path }}/backup-db.sh > /dev/null 2>&1"
@@ -19,7 +22,7 @@ wp_secrets: {}
 #     cron_file: my_backupdb
 
 # Backup log files example below
-# 
+#
 # backup_log_files:
 #
 #  'source': log file absolute path
@@ -28,4 +31,4 @@ wp_secrets: {}
 #   - source:/var/log/apache2/app-access.log.1
 #     dest: app-access.log
 #   - source: /var/log/mysql/err.log.1
-#     dest: 
+#     dest:

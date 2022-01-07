@@ -5,8 +5,7 @@ DB_BACKUP_PATH='{{ tmp_backup_path }}'
 MYSQL_HOST='{{ rds_host }}'
 MYSQL_PORT='{{ rds_port }}'
 
-# set this option to avoid error from mysqldump v8 on mysql server v5.7
-MYSQLDUMPOPTS="--column-statistics=0"
+MYSQLDUMPOPTS="{{ mysql_dump_opts }}"
 
 if [[ ! -e ${DB_BACKUP_PATH} ]]; then
     mkdir ${DB_BACKUP_PATH}
